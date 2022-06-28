@@ -1,0 +1,18 @@
+import { Module } from '@nestjs/common';
+import { PassportModule } from '@nestjs/passport';
+import { TypeOrmModule } from '@nestjs/typeorm';
+import { AuthModule } from 'src/auth/auth.module';
+import { BoardRepository } from './board.repository';
+import { BoardsController } from './boards.controller';
+import { BoardsService } from './boards.service';
+
+@Module({
+  imports: [
+    AuthModule,
+    PassportModule,
+    TypeOrmModule.forFeature([BoardRepository]),
+  ],
+  controllers: [BoardsController],
+  providers: [BoardsService],
+})
+export class BoardsModule {}
